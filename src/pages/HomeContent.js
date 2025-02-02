@@ -5,10 +5,10 @@ import j2 from "../image/j2.jpg";
 const titles = ["Photographer", "Freelancer", "Worker", "Personal Assistant", "Developer"];
 
 export const HomeContent = () => {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0); // Tracks which word to show
-  const [displayedText, setDisplayedText] = useState(""); // The text being typed
-  const [isTyping, setIsTyping] = useState(true); // Controls typing vs. erasing
-  const [charIndex, setCharIndex] = useState(0); // Tracks current character position
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+  const [charIndex, setCharIndex] = useState(0);
 
   useEffect(() => {
     const currentWord = titles[currentWordIndex];
@@ -33,8 +33,8 @@ export const HomeContent = () => {
           setCharIndex((prev) => prev - 1);
         } else {
           clearInterval(typingInterval);
-          setIsTyping(true); // Switch back to typing
-          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % titles.length); // Move to next word
+          setIsTyping(true);
+          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % titles.length);
         }
       }, 100);
     }
@@ -43,34 +43,43 @@ export const HomeContent = () => {
   }, [isTyping, charIndex, currentWordIndex]);
 
   return (
-    <>
     <Box
       sx={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: 'calc(100% - 240px)', // Adjust width for sidebar
+        width: '100%',
         minHeight: '100vh',
-        marginLeft: '240px', // Space to the right of the sidebar
-        padding: 4,
+        padding: { xs: 3, md: 6 }, // Adjust padding for small and large screens
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                          url(${j2})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${j2})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         color: '#fff',
       }}
     >
-      <Typography variant="h2" sx={{ fontWeight: 'bold' }}>S. M. Jahid Hasan</Typography>
-      <Typography variant="h5" sx={{ marginTop: 1 }}>
+      {/* Main Heading */}
+      <Typography 
+        variant="h3" 
+        sx={{
+          fontWeight: 'bold',
+          fontSize: { xs: '2rem', md: '3.5rem' }, // Responsive font size
+        }}
+      >
+        S. M. Jahid Hasan
+      </Typography>
+
+      {/* Typing Effect */}
+      <Typography 
+        variant="h5" 
+        sx={{ 
+          marginTop: 1, 
+          fontSize: { xs: '1.2rem', md: '2rem' }  // Responsive font size
+        }}
+      >
         I'm {displayedText}
       </Typography>
     </Box>
-
-</>
   );
 };
 

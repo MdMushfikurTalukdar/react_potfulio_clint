@@ -2,17 +2,17 @@ import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <Box
       sx={{
         backgroundColor: '#f8f9fa',
         padding: '20px',
         textAlign: 'center',
-        position: 'relative',
+        position: 'absolute',
         width: '100%',
         bottom: '0',
-        marginTop: "100%",
+        // marginTop: "100%",
 
       }}
     >
