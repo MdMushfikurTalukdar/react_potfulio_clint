@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Avatar, Typography, Box, Button, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Home, Person, Description, Work, Build, Email, Facebook, Twitter, LinkedIn, Menu } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
+import { Home, Description, Work, Build, Email, Facebook, Twitter, LinkedIn, Menu } from '@mui/icons-material';
 import j1 from '../image/j1.jpg';
 
 export const Sidebar = () => {
@@ -9,6 +10,14 @@ export const Sidebar = () => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const navLinks = [
+    { text: 'Home', icon: <Home />, path: '/' },
+    { text: 'Resume & Experiences', icon: <Description />, path: '/resume' },
+    { text: 'Blog', icon: <Work />, path: '/blog' },
+    { text: 'Services', icon: <Build />, path: '/services' },
+    { text: 'Contact', icon: <Email />, path: '/contact' }
+  ];
 
   const drawerContent = (
     <Box sx={{ width: 250, backgroundColor: '#1a1a2e', height: '100vh', padding: 2 }}>
@@ -20,15 +29,14 @@ export const Sidebar = () => {
 
       {/* Navigation Links */}
       <List>
-        {[
-          { text: 'Home', icon: <Home /> },
-          { text: 'About', icon: <Person /> },
-          { text: 'Resume', icon: <Description /> },
-          { text: 'Portfolio', icon: <Work /> },
-          { text: 'Services', icon: <Build /> },
-          { text: 'Contact', icon: <Email /> }
-        ].map((item, index) => (
-          <ListItem button key={index} sx={{ '&:hover': { backgroundColor: '#2c2c54' } }}>
+        {navLinks.map((item, index) => (
+          <ListItem 
+            button 
+            key={index} 
+            sx={{ '&:hover': { backgroundColor: '#2c2c54' } }}
+            component={Link}
+            to={item.path}
+          >
             <ListItemIcon sx={{ color: '#fff' }}>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} sx={{ color: '#fff' }} />
           </ListItem>
@@ -40,10 +48,11 @@ export const Sidebar = () => {
   return (
     <>
       <AppBar
-        position="fixed"
+        position="fixed"  
         sx={{
           backgroundColor: '#1a1a2e',
           padding: 1,
+          zIndex: 1300  // Ensure it stays on top of other components
         }}
       >
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -60,12 +69,17 @@ export const Sidebar = () => {
               gap: 3
             }}
           >
-            <Button startIcon={<Home />} sx={{ color: '#b0b0b0', '&:hover': { color: '#ffffff' } }}>Home</Button>
-            <Button startIcon={<Person />} sx={{ color: '#b0b0b0', '&:hover': { color: '#ffffff' } }}>About</Button>
-            <Button startIcon={<Description />} sx={{ color: '#b0b0b0', '&:hover': { color: '#ffffff' } }}>Resume</Button>
-            <Button startIcon={<Work />} sx={{ color: '#b0b0b0', '&:hover': { color: '#ffffff' } }}>Portfolio</Button>
-            <Button startIcon={<Build />} sx={{ color: '#b0b0b0', '&:hover': { color: '#ffffff' } }}>Services</Button>
-            <Button startIcon={<Email />} sx={{ color: '#b0b0b0', '&:hover': { color: '#ffffff' } }}>Contact</Button>
+            {navLinks.map((item, index) => (
+              <Button
+                key={index}
+                startIcon={item.icon}
+                component={Link}
+                to={item.path}
+                sx={{ color: '#b0b0b0', '&:hover': { color: '#ffffff' } }}
+              >
+                {item.text}
+              </Button>
+            ))}
           </Box>
 
           {/* Right Section - Social Icons */}
@@ -79,9 +93,6 @@ export const Sidebar = () => {
             <IconButton sx={{ backgroundColor: '#2c2c54', color: '#fff', '&:hover': { backgroundColor: '#42a5f5' } }}>
               <LinkedIn />
             </IconButton>
-            {/* <IconButton sx={{ backgroundColor: '#2c2c54', color: '#fff', '&:hover': { backgroundColor: '#42a5f5' } }}>
-              <Phone />
-            </IconButton> */}
           </Box>
 
           {/* Menu Icon for Mobile */}
@@ -108,6 +119,9 @@ export const Sidebar = () => {
       >
         {drawerContent}
       </Drawer>
+
+      {/* Add this Box to prevent content from being hidden behind the AppBar */}
+      <Box sx={{ height: '70px' }} />
     </>
   );
 };
