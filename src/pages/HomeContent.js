@@ -45,7 +45,7 @@ export const HomeContent = () => {
   return (
     <Box
       sx={{
-        width: '100%',
+        // width: '100%',
         minHeight: '100vh',
         padding: { xs: 3, md: 6 }, // Adjust padding for small and large screens
         display: 'flex',
