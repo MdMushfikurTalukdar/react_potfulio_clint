@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Divider, Fade, Slide } from '@mui/material';
+import { Box, Typography, Divider, Fade, Slide, Grid } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 const summaryData = {
@@ -55,30 +55,62 @@ const experienceData = [
 export const ResumeSection = () => {
   return (
     <Fade in timeout={1000}>
-      <Box sx={{ padding: 8, backgroundColor: '#f4f7fc' }}>
+      <Box sx={{ padding: { xs: 3, md: 8 }, backgroundColor: '#f4f7fc' }}>
         {/* Section Heading */}
         <Slide direction="down" in timeout={800}>
-          <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#2c3e50', marginBottom: 3 }}>
+          <Typography 
+            variant="h4" 
+            sx={{ 
+              fontWeight: 'bold', 
+              color: '#2c3e50', 
+              marginBottom: 3, 
+              fontSize: { xs: '1.8rem', md: '2.5rem' } 
+            }}
+          >
             Resume
           </Typography>
         </Slide>
-        <Typography variant="body1" sx={{ color: '#7f8c8d', marginBottom: 6 }}>
+        <Typography 
+          variant="body1" 
+          sx={{ 
+            color: '#7f8c8d', 
+            marginBottom: 6, 
+            fontSize: { xs: '0.9rem', md: '1rem' } 
+          }}
+        >
           Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit.
         </Typography>
 
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 6 }}>
+        {/* Responsive Grid Layout */}
+        <Grid container spacing={4}>
           {/* Summary and Education Section */}
-          <Box>
+          <Grid item xs={12} md={6}>
             <Slide direction="right" in timeout={1000}>
               <Box>
                 <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#2c3e50', marginBottom: 2 }}>Summary</Typography>
                 <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start', marginBottom: 4 }}>
                   <FiberManualRecordIcon sx={{ color: '#3498db', fontSize: 18, marginTop: 0.5 }} />
                   <Box>
-                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#2980b9' }}>{summaryData.name}</Typography>
-                    <Typography variant="body2" sx={{ color: '#7f8c8d', marginBottom: 2 }}>{summaryData.description}</Typography>
+                    <Typography 
+                      variant="h6" 
+                      sx={{ fontWeight: 'bold', color: '#2980b9', fontSize: { xs: '1rem', md: '1.25rem' } }}
+                    >
+                      {summaryData.name}
+                    </Typography>
+                    <Typography 
+                      variant="body2" 
+                      sx={{ color: '#7f8c8d', marginBottom: 2, fontSize: { xs: '0.875rem', md: '1rem' } }}
+                    >
+                      {summaryData.description}
+                    </Typography>
                     {summaryData.details.map((detail, index) => (
-                      <Typography key={index} variant="body2" sx={{ color: '#7f8c8d' }}>{detail}</Typography>
+                      <Typography 
+                        key={index} 
+                        variant="body2" 
+                        sx={{ color: '#7f8c8d', fontSize: { xs: '0.875rem', md: '1rem' } }}
+                      >
+                        {detail}
+                      </Typography>
                     ))}
                   </Box>
                 </Box>
@@ -97,19 +129,34 @@ export const ResumeSection = () => {
                   <Box key={index} sx={{ display: 'flex', gap: 2, alignItems: 'flex-start', marginBottom: 3 }}>
                     <FiberManualRecordIcon sx={{ color: '#3498db', fontSize: 18, marginTop: 0.5 }} />
                     <Box>
-                      <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#2980b9' }}>{education.degree}</Typography>
+                      <Typography 
+                        variant="h6" 
+                        sx={{ fontWeight: 'bold', color: '#2980b9', fontSize: { xs: '1rem', md: '1.25rem' } }}
+                      >
+                        {education.degree}
+                      </Typography>
                       <Typography variant="body2" sx={{ color: '#95a5a6' }}>{education.year}</Typography>
-                      <Typography variant="body2" sx={{ fontWeight: 'bold', color: '#34495e' }}>{education.institution}</Typography>
-                      <Typography variant="body2" sx={{ color: '#7f8c8d' }}>{education.description}</Typography>
+                      <Typography 
+                        variant="body2" 
+                        sx={{ fontWeight: 'bold', color: '#34495e', fontSize: { xs: '0.875rem', md: '1rem' } }}
+                      >
+                        {education.institution}
+                      </Typography>
+                      <Typography 
+                        variant="body2" 
+                        sx={{ color: '#7f8c8d', fontSize: { xs: '0.875rem', md: '1rem' } }}
+                      >
+                        {education.description}
+                      </Typography>
                     </Box>
                   </Box>
                 ))}
               </Box>
             </Slide>
-          </Box>
+          </Grid>
 
           {/* Professional Experience Section */}
-          <Box>
+          <Grid item xs={12} md={6}>
             <Slide direction="left" in timeout={1000}>
               <Box>
                 <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#2c3e50', marginBottom: 2 }}>Professional Experience</Typography>
@@ -117,17 +164,25 @@ export const ResumeSection = () => {
                   <Box key={index} sx={{ display: 'flex', gap: 2, alignItems: 'flex-start', marginBottom: 4 }}>
                     <FiberManualRecordIcon sx={{ color: '#3498db', fontSize: 18, marginTop: 0.5 }} />
                     <Box>
-                      <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#2980b9' }}>{experience.title}</Typography>
+                      <Typography 
+                        variant="h6" 
+                        sx={{ fontWeight: 'bold', color: '#2980b9', fontSize: { xs: '1rem', md: '1.25rem' } }}
+                      >
+                        {experience.title}
+                      </Typography>
                       <Typography variant="body2" sx={{ color: '#95a5a6' }}>{experience.years}</Typography>
-                      <Typography variant="body2" sx={{ fontWeight: 'bold', color: '#34495e' }}>{experience.company}</Typography>
+                      <Typography 
+                        variant="body2" 
+                        sx={{ fontWeight: 'bold', color: '#34495e', fontSize: { xs: '0.875rem', md: '1rem' } }}
+                      >
+                        {experience.company}
+                      </Typography>
                       <ul style={{ paddingLeft: 20, marginTop: 8 }}>
                         {experience.responsibilities.map((task, taskIndex) => (
-                          <li key={taskIndex} style={{
-                            color: '#7f8c8d',
-                            marginBottom: 6,
-                            transition: '0.3s',
-                            '&:hover': { color: '#3498db' }
-                          }}>
+                          <li 
+                            key={taskIndex} 
+                            style={{ color: '#7f8c8d', marginBottom: 6, fontSize: '0.875rem' }}
+                          >
                             {task}
                           </li>
                         ))}
@@ -137,8 +192,8 @@ export const ResumeSection = () => {
                 ))}
               </Box>
             </Slide>
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
       </Box>
     </Fade>
   );

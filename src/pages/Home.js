@@ -25,7 +25,7 @@ const Home = () => {
         <ServicesSection />
         <TestimonialsSection />
         <ContactSection />
-        {/* <Footer /> */}
+        <Footer />
       </Box>
     );
   };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Grid } from '@mui/material';
 import { EmojiPeople, Assignment, HeadsetMic, Group } from '@mui/icons-material';
 
 const statsData = [
@@ -11,15 +11,47 @@ const statsData = [
 
 export const StatsSection = () => {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 8, padding: 5, backgroundColor: '#f8f9fa' }}>
-      {statsData.map((stat, index) => (
-        <Box key={index} sx={{ textAlign: 'center' }}>
-          <Box>{stat.icon}</Box>
-          <Typography variant="h4" sx={{ fontWeight: 'bold' }}>{stat.value}</Typography>
-          <Typography variant="h6">{stat.label}</Typography>
-          <Typography variant="body2" sx={{ color: 'gray' }}>{stat.description}</Typography>
-        </Box>
-      ))}
+    <Box sx={{ padding: { xs: 3, md: 5 }, backgroundColor: '#f8f9fa' }}>
+      <Grid container spacing={4} justifyContent="center">
+        {statsData.map((stat, index) => (
+          <Grid 
+            item 
+            xs={12} 
+            sm={6} 
+            md={3} 
+            key={index} 
+            sx={{ textAlign: 'center', padding: { xs: 2, md: 3 } }}
+          >
+            <Box>{stat.icon}</Box>
+            <Typography 
+              variant="h4" 
+              sx={{ 
+                fontWeight: 'bold', 
+                fontSize: { xs: '2rem', md: '2.5rem' } 
+              }}
+            >
+              {stat.value}
+            </Typography>
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                fontSize: { xs: '1rem', md: '1.25rem' } 
+              }}
+            >
+              {stat.label}
+            </Typography>
+            <Typography 
+              variant="body2" 
+              sx={{ 
+                color: 'gray', 
+                fontSize: { xs: '0.875rem', md: '1rem' } 
+              }}
+            >
+              {stat.description}
+            </Typography>
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 };

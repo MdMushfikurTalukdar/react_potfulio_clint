@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Avatar, Typography, Box, Button, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Home, Person, Description, Work, Build, Email, Facebook, Twitter, LinkedIn, Phone, Menu } from '@mui/icons-material';
+import { Home, Person, Description, Work, Build, Email, Facebook, Twitter, LinkedIn, Menu } from '@mui/icons-material';
 import j1 from '../image/j1.jpg';
 
 export const Sidebar = () => {
@@ -79,9 +79,9 @@ export const Sidebar = () => {
             <IconButton sx={{ backgroundColor: '#2c2c54', color: '#fff', '&:hover': { backgroundColor: '#42a5f5' } }}>
               <LinkedIn />
             </IconButton>
-            <IconButton sx={{ backgroundColor: '#2c2c54', color: '#fff', '&:hover': { backgroundColor: '#42a5f5' } }}>
+            {/* <IconButton sx={{ backgroundColor: '#2c2c54', color: '#fff', '&:hover': { backgroundColor: '#42a5f5' } }}>
               <Phone />
-            </IconButton>
+            </IconButton> */}
           </Box>
 
           {/* Menu Icon for Mobile */}
